@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
+import os
 
-OLLAMA_API = "http://<NODE-IP>:11434/api/generate"
+OLLAMA_API = os.environ.get("OLLAMA_API_URL", "http://localhost:11434/api/generate")
 
 st.set_page_config(page_title="💬OllamaChat", layout="centered")
 st.markdown("<h1 style='text-align: center;'>💬OllamaChat</h1>", unsafe_allow_html=True)
@@ -47,3 +48,5 @@ if user_prompt:
 
             st.markdown(reply)
             st.session_state.chat_history.append(("assistant", reply))
+
+
